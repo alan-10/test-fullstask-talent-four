@@ -69,8 +69,17 @@ requisitos ter o docker intalado
 https://github.com/alan-10/test-fullstask-talent-four/assets/50430772/108c13a2-f9ce-489d-b5f9-de09c6ffabc2
 
 
-
-  
 </details>
+
+
+
+
+
+### Sobre o desenvolvimento
+Encontrei uma certa comodidade ao utilizar o Node.js no backend, embora tenha enfrentado alguns desafios, especialmente ao lidar com o banco de dados Neo4j, o qual eu ainda não estava familiarizado.
+
+A experiência prévia no desenvolvimento do backend me permitiu lidar de forma eficaz com os desafios apresentados pelo uso de um novo banco de dados e de um servidor com o qual não tinha muita familiaridade.
+
+No entanto, no início, tive algumas dificuldades ao trabalhar com o Vuetify e o Neo4j, já que não estava muito habituado com essas tecnologias. Apesar disso, esses obstáculos não impediram a conclusão do projeto.
 
 
