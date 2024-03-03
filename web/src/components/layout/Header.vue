@@ -6,7 +6,7 @@
     </v-app-bar-nav-icon>
   </template>
 
-  <v-app-bar-title>System Point</v-app-bar-title>
+  <v-app-bar-title>Sistema de Ponto</v-app-bar-title>
 </v-app-bar></template>
 <script setup lang="ts">
 import { useMenuStore } from '@/stores/menu';

@@ -5,9 +5,9 @@
     <v-divider></v-divider>
 
     <v-list density="compact" nav>
-      <RouterLink class="linkNave" to="/sytemPoint"> <v-list-item prepend-icon="mdi-view-dashboard" title="Point"
+      <RouterLink class="linkNave" to="/sytemPoint"> <v-list-item prepend-icon="mdi-view-dashboard" title="Pontos"
           value="home"></v-list-item></RouterLink>
-      <RouterLink class="linkNave" to="/Users"><v-list-item prepend-icon="mdi-forum" title="Usuario"
+      <RouterLink class="linkNave" to="/Users"><v-list-item prepend-icon="mdi-forum" title="Usuários"
           value="Usuario"></v-list-item></RouterLink>
     </v-list>
   </v-navigation-drawer>
@@ -24,7 +24,7 @@ const menuStore = useMenuStore();
 <style>
 .linkNave {
   color: #333;
-  text-decoration: underline;
+  text-decoration: none;
   text-decoration-style: double;
   text-decoration-color: currentcolor;
 }

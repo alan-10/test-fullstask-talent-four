@@ -4,6 +4,8 @@ import { SytemPointApi } from '@/service/SystemPoint'
 import { useToast } from "vue-toastification";
 const toast = useToast();
 
+
+
 const sytemPointApi = new SytemPointApi()
 const registration = ref("");
 const loading = ref(false);
@@ -22,10 +24,7 @@ const onSubmit = async (event: any) => {
       toast.success('ponto efetuado com sucesso')
       clearRegistration()
     } catch (error) {
-      console.log(error);
-      
-      toast.error('Error: não foi possivel bater o ponto')
-
+      toast.error('Error: não foi possivel bater o ponto')    
     }
 
   }
@@ -37,8 +36,6 @@ const validateregistration = [(value: any) => {
   if (!value) {
     return "Informe a registration"
   }
-
-
   return true;
 }
 ]
