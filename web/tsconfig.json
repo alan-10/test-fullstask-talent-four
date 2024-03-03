@@ -1,0 +1,30 @@
+{
+  "files": [],
+  "references": [
+    {
+      "path": "./tsconfig.node.json"
+    },
+    {
+      "path": "./tsconfig.app.json"
+    }
+  ],
+  "compilerOptions": {
+    "target": "esnext",
+"useDefineForClassFields": true,
+"module": "esnext",
+"moduleResolution": "node",
+"isolatedModules": true,
+"strict": true,
+"jsx": "preserve",
+"jsxFactory": "h",
+"jsxFragmentFactory": "Fragment",
+"sourceMap": true,
+"resolveJsonModule": true,
+"esModuleInterop": true,
+  "paths": {
+  "@/": [
+    "./src/"
+    ],
+}
+  }
+}
