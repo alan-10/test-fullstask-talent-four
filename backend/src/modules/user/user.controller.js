@@ -62,11 +62,7 @@ class UserController {
       res.json(400, { message: error.message })
       next()
     }
-
   }
-
-
-
 }
 
 

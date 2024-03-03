@@ -4,10 +4,6 @@ const { v4: uuidv4 } = require('uuid');
 
 class UserService {
 
-  constructor() {
-
-  }
-
   async create({ name, email }) {
     const session = driver.session({ database: "neo4j" });
 
@@ -36,19 +32,20 @@ class UserService {
 
   async findByEmail(email) {
     const session = driver.session({ database: "neo4j" });
-    const result = await session.run(`MATCH(u:User) WHERE u.email = '${email}' return u limit 1`);
-    const user = result && result.records.length > 0 && result.records[0]._fields;
 
+    const result = await session.run(`MATCH(u:User) WHERE u.email = '${email}' return u limit 1`);
+
+    const user = result && result.records.length > 0 && result.records[0]._fields;
     await session.close()
     return user;
   }
 
   async findAllUser() {
     const session = driver.session({ database: "neo4j" });
+
     const result = await session.run(`MATCH (u:User)  return u`)
 
     const users = result.records.map(fild => fild._fields[0].properties);
-
     await session.close()
     return users;
   }
@@ -56,13 +53,10 @@ class UserService {
 
   async findUserById(id) {
     const session = driver.session({ database: "neo4j" });
-
     const result = await session.run(`MATCH (u:User {id: '${id}'})  return  u  `)
-
     const user = result && result.records.length > 0 && result.records[0]._fields[0].properties;
 
     await session.close()
-
     return user;
   }
 
@@ -70,14 +64,14 @@ class UserService {
   async deleteUserById(id) {
     const session = driver.session({ database: "neo4j" });
     await session.run(`MATCH (u:User {id: '${id}'})  DELETE u`);
-
     await session.close()
+
     return true
   }
 
   async findUserByRegistration(registration) {
     const session = driver.session({ database: "neo4j" });
-    
+
     const result = await session.run(`MATCH (u:User {registration: '${registration.trim()}'})  return  u  `);
 
     const user = result && result.records.length > 0 && result.records[0]._fields[0].properties;
@@ -86,23 +80,20 @@ class UserService {
   }
 
   async update({ name, email, id }) {
-   
+
     const session = driver.session({ database: "neo4j" });
 
-    const result = await session.run(`MATCH (u:User {id: '${id}'} )
-    SET u.name = '${name}'
-    SET u.email = '${email}'
-     RETURN u`)
+    const result = await session.run(`
+      MATCH (u:User {id: '${id}'} )
+        SET u.name = '${name}'
+        SET u.email = '${email}'
+      RETURN u`);
 
     const userUpdated = result && result.records.length > 0 && result.records[0]._fields[0].properties;
-
-    await session.close()
+    await session.close();
 
     return userUpdated;
   }
-
-
-
 }
 
 module.exports = {

@@ -1,7 +1,7 @@
 
 
 import { AxiosPoint } from "@/plugins/axios";
-import type { SystemPointCreate,SystemPoint, SystemPointWithUser } from '@/interface/SiystemPoint'
+import type { SystemPoint, SystemPointWithUser } from '@/interface/SiystemPoint'
 
 
 export class SytemPointApi {

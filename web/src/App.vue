@@ -5,15 +5,15 @@ import { RouterLink, RouterView } from 'vue-router'
 
 
 <template>
- <div>
-      <VApp>
-        <v-main >
+  <div>
+    <VApp>
+      <v-main>
 
         <RouterView />
-        </v-main>
-      </VApp>
+      </v-main>
+    </VApp>
 
- </div> 
+  </div>
 </template>
   
 <style scoped>

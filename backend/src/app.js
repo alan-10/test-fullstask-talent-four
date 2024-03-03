@@ -1,15 +1,13 @@
 const restify = require('restify');
-const   corsMiddleware  = require("restify-cors-middleware");
+const corsMiddleware = require("restify-cors-middleware");
 
-const cors =  corsMiddleware({
+const cors = corsMiddleware({
   origins: ["*"],
   allowHeaders: ["Authorization"],
   exposeHeaders: ["Authorization"]
 });
 
-
-var Router = require('restify-router').Router;
-const  rotes  = require('./routes')
+const rotes = require('./routes')
 
 
 const server = restify.createServer({
@@ -17,7 +15,7 @@ const server = restify.createServer({
   version: '1.0.0'
 });
 server.pre(cors.preflight);
-      server.use(cors.actual);
+server.use(cors.actual);
 server.use(restify.plugins.acceptParser(server.acceptable));
 server.use(restify.plugins.queryParser());
 server.use(restify.plugins.bodyParser());

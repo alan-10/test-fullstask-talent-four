@@ -4,11 +4,9 @@ class PointSystemController {
   }
 
   async create(req, res, next) {
-
     try {
       const { registration } = req.body
       const pointcreated = await this.pointService.create(registration);
-
       res.json(201, pointcreated)
     } catch (error) {
       console.log('error', { message: error.message });
@@ -27,7 +25,6 @@ class PointSystemController {
       res.status(400, { message: error.message })
       next()
     }
-
   }
 
 
@@ -45,11 +42,7 @@ class PointSystemController {
       res.status(400, { message: error.message })
       next()
     }
-
-
-
   }
-
 }
 
 
