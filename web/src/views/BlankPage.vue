@@ -5,25 +5,32 @@ const variants = ['tonal', 'outlined']
 
 <template >
   <div>
+    <v-app >
+    <v-container  style="margin: auto;">
+      <v-row align="center">
+        <v-col cols="12">
+          <h1 class="text-center">Sistema de Ponto</h1>
+        </v-col>
+      </v-row>
+      <v-row justify="center">
+        <RouterLink to="/actionPoint">
+          <v-btn size="x-large">
+            <v-card-title>Client</v-card-title>
+          </v-btn>
+        </RouterLink>
 
-    <VContainer>
-      <VCardTitle>Sistema Bater Ponto</VCardTitle>
-    </VContainer>
-    <v-container class="sm-auto" style="height: 100vh; display: flex;justify-content: center; align-items: center;">
+        <RouterLink to="/Layout">
+          <v-btn size="x-large">
+            <v-card-title>Adimin</v-card-title>
+          </v-btn>
+        </RouterLink>
 
-
-
-
-      <v-card-actions>
-        <RouterLink to="/Layout"><v-btn size="x-large"> Adimin </v-btn></RouterLink>
-      </v-card-actions>
-
-      <v-card-actions>
-        <RouterLink to="/actionPoint"><v-btn size="x-large"> Client </v-btn></RouterLink>
-      </v-card-actions>
-
-
+      </v-row>
     </v-container>
+  </v-app>
   </div>
 </template>
 
+<style>
+
+</style>

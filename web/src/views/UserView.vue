@@ -76,7 +76,7 @@ async function save() {
     console.log('error', v$.value.$errors)
     console.log(user.value);
 
-    // if (!(v$.value.$errors.length > 0)) {
+    if (!(v$.value.$errors.length > 0)) {
 
     console.log('iscreating user', isCreatingUser.value);
 
@@ -93,7 +93,7 @@ async function save() {
 
     closeModal()
     load();
-    // }
+    }
   })
 }
 
