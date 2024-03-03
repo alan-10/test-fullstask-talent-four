@@ -64,6 +64,12 @@ requisitos ter o docker intalado
 
 <details>
 <summary>video mostrando o uso do sistema</summary>
+
+
+https://github.com/alan-10/test-fullstask-talent-four/assets/50430772/108c13a2-f9ce-489d-b5f9-de09c6ffabc2
+
+
+
   
 </details>
 
