@@ -1,44 +1,44 @@
-const { closeConexction, driver } = require('../../conection');
+const { driver } = require('../../conection');
 const { UserService } = require('../user/user.service');
 const { v4: uuidv4 } = require('uuid');
 const {
   dateFormated,
   dateWithoutHours
-} = require('../../share/utils')
+} = require('../../share/utils');
 
 
 class PointSystemService {
 
   constructor() {
-    this.userService = new UserService()
+    this.userService = new UserService();
   }
 
   async create(registration) {
-    const session = driver.session({ database: "neo4j" });
-    const user = await this.userService.findUserByRegistration(registration)
+    const session = driver.session();
+    const user = await this.userService.findUserByRegistration(registration);
 
     if (!user) {
       throw new Error('user do not exists');
     }
 
     const [
-      pointAlreadCreated,
+      pointAlreadyCreated,
       pointCreatedWithoutFinish
     ] = await Promise.all([
-      this.getPointUserDayle(user.id),
+      this.getPointUserDaily(user.id),
       this.getPointCreatedWithoutFinished(user.id)
-    ])
+    ]);
 
 
-    const shouldUpdatePoint = (pointAlreadCreated && pointCreatedWithoutFinish)
-    const poiAlreadCreatedToThisUser = (pointAlreadCreated && !pointCreatedWithoutFinish)
+    const shouldUpdatePoint = (pointAlreadyCreated && pointCreatedWithoutFinish);
+    const poiAlreadyCreatedToThisUser = (pointAlreadyCreated && !pointCreatedWithoutFinish);
 
     if (shouldUpdatePoint) {
-      return await this.finishPoint(registration)
+      return await this.finishPoint(registration);
     }
 
-    if (poiAlreadCreatedToThisUser) {
-      throw new Error('point dayle alread created to this User')
+    if (poiAlreadyCreatedToThisUser) {
+      throw new Error('point daily already created to this User');
     }
 
     const result = await session.run(`
@@ -60,14 +60,14 @@ class PointSystemService {
       CREATE (u)-[:BOUGHT]->(p);
     `);
 
-    await session.close()
+    await session.close();
 
     return pointCreate;
   }
 
 
-  async getPointUserDayle(userId) {
-    const session = driver.session({ database: "neo4j" });
+  async getPointUserDaily(userId) {
+    const session = driver.session();
     const result = await session.run(`
       MATCH (u:User {id: '${userId}'} )-[:BOUGHT]->(p:Point {date: '${dateWithoutHours()}'} )
       RETURN u, p;
@@ -75,14 +75,14 @@ class PointSystemService {
 
     const points = result && result.records.length > 0 ? result.records.map(fild => fild._fields) : null;
 
-    await session.close()
+    await session.close();
 
     return points;
   }
 
 
   async getPointCreatedWithoutFinished(userId) {
-    const session = driver.session({ database: "neo4j" });
+    const session = driver.session();
     const result = await session.run(`
       MATCH (u:User)-[:BOUGHT]->(p:Point )
       WHERE u.id = $userId AND p.date = $date and p.dateExit = $exit
@@ -95,14 +95,14 @@ class PointSystemService {
 
     const points = result && result.records.length > 0 ? result.records.map(fild => fild._fields) : null;
 
-    await session.close()
+    await session.close();
 
     return points;
   }
 
 
   async getPointByDay() {
-    const session = driver.session({ database: "neo4j" });
+    const session = driver.session();
     const result = await session.run(`
       MATCH (p:Point {date: '${dateWithoutHours}', } ) return p
     `);
@@ -115,7 +115,7 @@ class PointSystemService {
 
 
   async finishPoint(registration) {
-    const session = driver.session({ database: "neo4j" });
+    const session = driver.session();
     const user = await this.userService.findUserByRegistration(registration);
 
     if (!user) {
@@ -131,23 +131,23 @@ class PointSystemService {
 
     const point = result && result.records.length > 0 ? result.records.map(fild => fild._fields) : null;
 
-    await session.close()
+    await session.close();
 
     return point;
 
   }
 
   async list() {
-    const session = driver.session({ database: "neo4j" });
+    const session = driver.session();
 
     const result = await session.run(`
       MATCH (u:User )-[:BOUGHT]->(p:Point  )
       RETURN u.name, u.id, u.email,
       p.id, p.date, p.dateEntry, p.dateExit `);
 
-    const allRecordesPointWithUser = result.records.map(value => value._fields)
+    const allRecordsPointWithUser = result.records.map(value => value._fields);
 
-    const pointAndUser = allRecordesPointWithUser.map(value => {
+    const pointAndUser = allRecordsPointWithUser.map(value => {
 
       const [userName, userId, userEmail, pointId, pointDate, pointEntry, pointExit] = value;
 
@@ -162,7 +162,7 @@ class PointSystemService {
       }
     });
 
-    return pointAndUser
+    return pointAndUser;
   }
 
 

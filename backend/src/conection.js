@@ -1,12 +1,16 @@
 
 const neo4j = require('neo4j-driver');
 
+const URI = 'neo4j+s://bd623dae.databases.neo4j.io'
+const USER = 'neo4j'
+const PASSWORD = 'pLFBxUg-32G75LMeqptlPmMU1BWtmGPrr4_SLm2FCgs'
 
-const driver = neo4j.driver('bolt://3.216.27.176:7687',
-  neo4j.auth.basic('neo4j', 'master-vibrations-retrievals'),
-  {/* encrypted: 'ENCRYPTION_OFF' */ });
 
-const session  = driver.session({ database: "neo4j" });
+const driver = neo4j.driver(URI, neo4j.auth.basic(USER, PASSWORD));
+  
+
+
+const session  = driver.session();
 
 //clear data base
 // session.run(`

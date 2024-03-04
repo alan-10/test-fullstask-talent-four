@@ -10,20 +10,20 @@ class PointSystemController {
       res.json(201, pointcreated)
     } catch (error) {
       console.log('error', { message: error.message });
-      res.status(400, error)
-      next()
+      res.status(400, error);
+      next();
     }
   }
 
 
   async allPoints(req, res, next) {
     try {
-      const points = await this.pointService.list()
-      res.json(points)
+      const points = await this.pointService.list();
+      res.json(points);
     } catch (error) {
       console.log('error', error);
-      res.status(400, { message: error.message })
-      next()
+      res.status(400, { message: error.message });
+      next();
     }
   }
 
@@ -31,16 +31,16 @@ class PointSystemController {
   async finishPoint(req, res, next) {
     const {
       registration
-    } = req.body
+    } = req.body;
 
     try {
       await this.pointService.finishPoint(registration);
-      res.json(200,)
+      res.json(200,);
 
     } catch (error) {
       console.log('error', error);
-      res.status(400, { message: error.message })
-      next()
+      res.status(400, { message: error.message });
+      next();
     }
   }
 }

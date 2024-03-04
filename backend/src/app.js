@@ -7,7 +7,7 @@ const cors = corsMiddleware({
   exposeHeaders: ["Authorization"]
 });
 
-const rotes = require('./routes')
+const rotes = require('./routes');
 
 
 const server = restify.createServer({
@@ -26,7 +26,7 @@ server.get('/echo/:name', function (req, res, next) {
   return next();
 });
 
-rotes.applyRoutes(server)
+rotes.applyRoutes(server);
 
 server.listen(8080, function () {
   console.log('%s listening at %s', server.name, server.url);
